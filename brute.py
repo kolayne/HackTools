@@ -2,8 +2,7 @@ from requests import get,post
 from hashlib import md5
 from re import findall
 
-domain = 'http://s3cur3d4r1k.cf'
-#my_email_pattern = '[a-z]{3}@hackerman.ctf'
+domain = ''
 
 r = get(domain+'/api/v4/users/1').json()
 email = findall('([a-z0-9]{32})', r['avatar_url'])[0]
